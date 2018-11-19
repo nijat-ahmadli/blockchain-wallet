@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.nijatahmadli.blockchainwallet"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", 'BASE_URL', '"https://blockchain.info"'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+ext {
+    daggerVersion = '2.15'
+    retrofitVersion = '2.3.0'
+    okhttpVersion = '3.9.0'
+    rxAndroidVersion = '2.0.2'
+    supportLibrariesVersion = '28.0.0'
+    mockitoVersion = '2.12.0'
+}
+
+dependencies {
+    // DI - Dagger
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // Networking
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
+    // UI
+    implementation "com.android.support:recyclerview-v7:$supportLibrariesVersion"
+    implementation "com.android.support:design:$supportLibrariesVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibrariesVersion"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Testing
+    testImplementation 'junit:junit:4.12'
+    testImplementation "com.google.truth:truth:0.34"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

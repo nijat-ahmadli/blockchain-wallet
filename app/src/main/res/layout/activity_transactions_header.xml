@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.nijatahmadli.blockchainwallet.presentation.transactions.viewModel.TransactionsViewModel" />
+    </data>
+
+    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:visibleOrGone="@{viewModel.showContent}"
+        tools:showIn="@layout/activity_transactions">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="32dp"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@{@string/btc_amount(viewModel.finalBalance)}"
+                android:textColor="@android:color/white"
+                android:textSize="32sp"
+                tools:text="123,1235" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@{@string/positive_btc_amount(viewModel.totalReceived)}"
+                android:textColor="@android:color/white"
+                tools:text="+123,123" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@{@string/negative_btc_amount(viewModel.totalSent)}"
+                android:textColor="@android:color/white"
+                tools:text="-123,123" />
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+</layout>

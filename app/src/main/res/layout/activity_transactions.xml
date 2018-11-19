@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.nijatahmadli.blockchainwallet.presentation.transactions.viewModel.TransactionsViewModel" />
+    </data>
+
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.transactions.view.TransactionsActivity">
+
+        <include
+            layout="@layout/activity_transactions_header"
+            app:viewModel="@{viewModel}" />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/activity_transaction_swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="@{!viewModel.showLoading}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:refreshing="@{viewModel.showRefresh}">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include
+                    layout="@layout/activity_transactions_error_screen"
+                    app:viewModel="@{viewModel}" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/activity_transaction_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:visibleOrGone="@{viewModel.showContent}" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:visibleOrGone="@{viewModel.showLoading}" />
+            </FrameLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.nijatahmadli.blockchainwallet.presentation.transactions.viewModel.TransactionItemViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/transaction_item_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{viewModel.isNegative ? @string/transaction_sent : @string/transaction_received}"
+            android:textColor="@{viewModel.isNegative ? @color/transaction_sent : @color/transaction_received}"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="SENT" />
+
+        <TextView
+            android:id="@+id/transaction_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/transaction_item_label"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@id/transaction_item_amount"
+            android:text="@{viewModel.date}"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            tools:text="Date" />
+
+        <TextView
+            android:id="@+id/transaction_item_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@{@string/btc_amount(viewModel.amount)}"
+            android:textColor="@{viewModel.isNegative ? @color/transaction_sent : @color/transaction_received}"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="12345" />
+
+    </RelativeLayout>
+</layout>

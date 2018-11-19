@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">BlockchainWallet</string>
+
+    <string name="network_error_timeout">Timeout error</string>
+    <string name="network_error_unknown">Unknown error</string>
+    <string name="error_state_try_again">Pull to refresh to try again</string>
+
+    <string name="btc_amount">%s BTC</string>
+    <string name="positive_btc_amount">+ %s BTC</string>
+    <string name="negative_btc_amount">- %s BTC</string>
+
+    <string name="transaction_sent">SENT</string>
+    <string name="transaction_received">RECEIVED</string>
+</resources>
